@@ -31,7 +31,7 @@
 - (void) userNotificationCenter:(UNUserNotificationCenter*) center
 			willPresentNotification:(UNNotification*) notification
 			withCompletionHandler:(void (^)(UNNotificationPresentationOptions options)) completionHandler {
-	completionHandler(UNNotificationPresentationOptionSound);
+	completionHandler(0); // Don't show notification if app is in foreground
 	NotificationSchedulerPlugin::get_singleton()->emit_signal(NOTIFICATION_OPENED_SIGNAL, [notification.request.identifier intValue]);
 	NotificationSchedulerPlugin::get_singleton()->handle_completion(notification.request.identifier);
 }
